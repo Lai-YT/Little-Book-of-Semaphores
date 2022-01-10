@@ -1,4 +1,4 @@
-# Rendezvous
+# 3.3 Rendezvous
 
 ## Puzzle
 
@@ -8,14 +8,14 @@ In other words, given this code
 
 *Thread A*
 ```
-1 statement a1
-2 statement a2
+statement a1
+statement a2
 ```
 
 *Thread B*
 ```
-1 statement b1
-2 statement b2
+statement b1
+statement b2
 ```
 
 We want to guarantee that a1 happens before b2 and b1 happens before a2. \

@@ -1,4 +1,4 @@
-# Mutex
+# 3.4 Mutex
 
 ## Puzzle
 
@@ -7,10 +7,10 @@ to the shared variable `count`.
 
 *Thread A*
 ```
-1 count = count + 1
+count = count + 1
 ```
 
 *Thread B*
 ```
-1 count = count + 1
+count = count + 1
 ```
