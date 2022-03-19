@@ -1,4 +1,4 @@
-# Reusable barrier
+# 3.7 Reusable barrier
 
 Often a set of cooperating threads will perform a series of steps in a loop and \
 synchronize at a barrier after each step. For this application we need a \
