@@ -1,12 +1,8 @@
+import logging
 import threading
 
 
-# utility
-print_lock = threading.Lock()
-def safe_print(*args, **kwargs) -> None:
-    """This is a thread-safe print."""
-    with print_lock:
-        print(*args, **kwargs)
+logging.basicConfig(format="%(message)s", level=logging.INFO)
 
 
 NUM_OF_THREADS = 10
@@ -20,11 +16,11 @@ def worker(work_no: int) -> None:
     global in_wait
 
     # do some rendezvous...
-    safe_print(f'Worker {work_no} finishes rendezvous.')
+    logging.info(f'Worker {work_no} finishes rendezvous.')
 
     mutex.acquire()
     in_wait += 1
-    safe_print(f'Worker {work_no} is waiting...')
+    logging.info(f'Worker {work_no} is waiting...')
     mutex.release()
 
     # The last thread in wait meets the condition and passes the barrier.
@@ -37,7 +33,7 @@ def worker(work_no: int) -> None:
     barrier.release()
 
     # get into critical point...
-    safe_print(f'Worker {work_no} is now in critical point!')
+    logging.info(f'Worker {work_no} is now in critical point!')
     # do some critical work...
 
 

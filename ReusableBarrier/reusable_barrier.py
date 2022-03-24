@@ -1,12 +1,8 @@
+import logging
 import threading
 
 
-# utility
-print_lock = threading.Lock()
-def safe_print(*args, **kwargs) -> None:
-    """This is a thread-safe print."""
-    with print_lock:
-        print(*args, **kwargs)
+logging.basicConfig(format="%(message)s", level=logging.INFO)
 
 
 NUM_OF_THREADS = 9
@@ -23,17 +19,17 @@ def worker(work_no: int) -> None:
 
     for i in range(1, 10):
         # do some rendezvous...
-        safe_print(f'Worker {work_no} finishes rendezvous in {i}.')
+        logging.info(f'Worker {work_no} finishes rendezvous in {i}.')
 
         mutex.acquire()
         in_wait += 1
-        safe_print(f'Worker {work_no} is waiting at turnstile 1 in {i}...')
+        logging.info(f'Worker {work_no} is waiting at turnstile 1 in {i}...')
         # The last thread in wait meets the condition and passes the turnstile.
         if in_wait == NUM_OF_THREADS:
             # lock the second and unlock the first
             turnstile2.acquire()
             turnstile.release()
-            safe_print(f'--- Turnstile 1 is unlocked in {i} ---')
+            logging.info(f'--- Turnstile 1 is unlocked in {i} ---')
         mutex.release()
 
         # first turnstile
@@ -41,16 +37,16 @@ def worker(work_no: int) -> None:
         turnstile.release()
 
         # do some critical work...
-        safe_print(f'Worker {work_no} finishes critical point in {i}.')
+        logging.info(f'Worker {work_no} finishes critical point in {i}.')
 
         mutex.acquire()
         in_wait -= 1
-        safe_print(f'Worker {work_no} is waiting at turnstile 2 in {i}...')
+        logging.info(f'Worker {work_no} is waiting at turnstile 2 in {i}...')
         if in_wait == 0:
             # lock the first and unlock the second
             turnstile.acquire()
             turnstile2.release()
-            safe_print(f'--- Turnstile 2 is unlocked in {i} ---')
+            logging.info(f'--- Turnstile 2 is unlocked in {i} ---')
         mutex.release()
 
         # second turnstile

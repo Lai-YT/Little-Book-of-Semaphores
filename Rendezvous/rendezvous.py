@@ -1,4 +1,8 @@
+import logging
 import threading
+
+
+logging.basicConfig(format="%(message)s", level=logging.INFO)
 
 
 # a1 < b2 && b1 < a2
@@ -7,17 +11,17 @@ b1_done = threading.Semaphore(0)
 
 
 def worker_a() -> None:
-    print('a1')
+    logging.info('a1')
     a1_done.release()
     b1_done.acquire()
-    print('a2')
+    logging.info('a2')
 
 
 def worker_b() -> None:
-    print('b1')
+    logging.info('b1')
     b1_done.release()
     a1_done.acquire()
-    print('b2')
+    logging.info('b2')
 
 
 def main() -> None:
