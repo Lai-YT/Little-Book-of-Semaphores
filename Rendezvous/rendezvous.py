@@ -2,7 +2,7 @@ import logging
 import threading
 
 
-logging.basicConfig(format="%(message)s", level=logging.INFO)
+logging.basicConfig(format='%(message)s', level=logging.INFO)
 
 
 # a1 < b2 && b1 < a2

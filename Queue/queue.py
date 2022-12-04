@@ -5,7 +5,7 @@ import random
 import threading
 
 
-logging.basicConfig(format="%(message)s", level=logging.INFO)
+logging.basicConfig(format='%(message)s', level=logging.INFO)
 
 
 leader_queue = threading.Semaphore(0)
@@ -28,7 +28,7 @@ class Leader:
         else:
             # leader waits and release mutex
             Leader.leader_in_wait += 1
-            logging.info(f"\tleader in wait: {Leader.leader_in_wait}")
+            logging.info(f'\tleader in wait: {Leader.leader_in_wait}')
             mutex.release()
             # wait for the follower to arrive
             leader_queue.acquire()
@@ -55,7 +55,7 @@ class Follower:
         else:
             # follower waits and release mutex
             Follower.follower_in_wait += 1
-            logging.info(f"\tfollower in wait: {Follower.follower_in_wait}")
+            logging.info(f'\tfollower in wait: {Follower.follower_in_wait}')
             mutex.release()
             # wait for the leader to arrive
             follower_queue.acquire()

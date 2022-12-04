@@ -2,7 +2,7 @@ import logging
 import threading
 
 
-logging.basicConfig(format="%(message)s", level=logging.INFO)
+logging.basicConfig(format='%(message)s', level=logging.INFO)
 
 
 NUM_OF_THREADS = 10
