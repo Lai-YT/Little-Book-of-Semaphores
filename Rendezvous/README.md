@@ -19,5 +19,4 @@ statement b2
 ```
 
 We want to guarantee that a1 happens before b2 and b1 happens before a2. \
-In writing your solution, be sure to specify the names and initial \
-values of your semaphores (little hint there).
+In writing your solution, be sure to specify the names and initial values of your semaphores (little hint there).
